@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to our hackathon-winning project! This repository contains the code for a Python code explanation assistant, developed by Simon Hanly-Jones, Ryan Mann, and Emmanuel Isacc, as part of the Prediction Guard and Intel hackathon. Our project leverages sequence transformers and Retrieval-Augmented Generation (RAG) to provide detailed explanations of Python code snippets.
+Welcome to our hackathon-winning project! This repository contains the code for a Python code explanation assistant, developed by Simon Hanly-Jones, Ryan Mann, and Emmanuel Isaac, as part of the Prediction Guard and Intel hackathon. Our project leverages sequence transformers and Retrieval-Augmented Generation (RAG) to provide detailed explanations of Python code snippets.
 
 Note that the resources made available during the hackathon have been de-provisioned and the API used as the foundation of the model is no longer authorised.
 
