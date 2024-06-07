@@ -1,0 +1,23 @@
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore virtual environment directories
+venv/
+wiz/
+
+# Ignore environment variables files
+.env
+
+# Ignore IDE project files
+.idea/
+.vscode/
+
+# Ignore log files
+*.log
+
+# Ignore any other files or directories
+ignoreFiles/
+.lancedball-MiniLM-L12-v2/
+.lancedball-MiniLM-L12-v2_OLD/
