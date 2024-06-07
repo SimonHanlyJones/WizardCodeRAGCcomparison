@@ -1,0 +1,40 @@
+Simon Hanly-Jones
+ Today at 6:51 PM
+#challenge5sub
+Hi Prediction Guard and Intel team
+We (
+@Ryan
+, 
+@Emmanuel
+ and I) had a lot of fun on this challenge, and on this hackathon in general. We’ve learned a lot and are very grateful. I’m sorry if I broke Intel’s cloud compute service by downloading too many models or permanently convinced prediction guard’s Zephyr-7B-Beta that it is an Aboleth.
+We found this problem very challenging. We achieved very good ‘out of the box’ performance with CodeWizard using no RAG injection. We had difficulty meaningfully improving on this performance with RAG injection.
+Our approach was to scrape the official python documentation off their website and use the sequence transformer "all-MiniLM-L12-v2" to store it and make it accessible.
+Our non rag model used the following prompt template:
+       code_prompt_template = (
+           "### Instruction:\n"
+           "You are a python code explanation assistant. Respond with a detailed explanation of the code snippet in the below input.\n"
+           "\n"
+           "### Input:\n"
+           "{query}\n"
+           "\n"
+           "### Response:\n"
+       )
+Our rag model uses this prompt template:
+code_prompt_template = (
+           "### Instruction:\n"
+           "You are a python code explanation assistant. Respond with a detailed explanation of the code snippet in the below input. Additional python documentation is to be used only if you do not understand the code snippet. \n"
+           "\n"
+           "### Input:\n"
+           "{query}\n"
+           "Python Documentation: {rag_context}\n"
+           "\n"
+           "### Response:\n"
+       )
+The key to good performance was good prompting.  Using “Context” or “Informational Context” confused the model and seems to make it think the user is asking about the python documentation instead of the query.  Reformatting the prompt to explicitly refer to the RAG injection as “Python Documentation” we were able to obtain a meaningful contribution from the RAG injection. You will see in our demo output (attached) that the RAG model was able to successfully retrieve a relevant chunk of text which also contributed to the performance.
+We wrapped our models in a fast API and rely on the automatically generated swagger documentation as a User Interface as required. On running the code it is available at “127.0.0.1:8000/docs” URL. This was done because fast API is a useful method to deploy LLM’s and abstract them from the end user.
+Our code is split into two files, "get_lance_db.py" creates the database for RAG. The chatbots and the fast API are contained in "wiz_code.py".
+To run the project, first download all files and put in the same directory, run get_lance_db.py, which will transform the "pychunks.json" file into the vectorized database. Then run wiz_code.py, which will generate our demo_output to sdout then launch the fast API.
+We are available for DnD based coding challenges and promise to try not to break all provided hardware:
+www.linkedin.com/in/simon-hanly-jones-79110572
+https://www.linkedin.com/in/ryanlmann/
+www.linkedin.com/in/emmanuel-isaac-b41882194 (edited) 
